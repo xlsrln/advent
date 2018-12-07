@@ -14,7 +14,7 @@ main = do
     let failures = [ x | x <- concat result, x > 1]
     print $ length failures
     let answer = snd $ head [x | x <- map (findoverlap inputs) inputs, fst x == 0]
-    print $ elemIndices answer inputs
+    print $ labels !! (head $ elemIndices answer inputs)
 
 --adds list of inputs iteratively
 addinputs mx [] = mx
@@ -61,6 +61,3 @@ compareinputs (a1,b1,w1,h1) (a2,b2,w2,h2) = ( compare1 (a1,w1) (a2,w2) ) * ( com
             | otherwise = 0
         
 findoverlap inputs bx = ( maximum [ compareinputs a bx | a <- inputs, a /= bx] , bx)
-
-
- 
